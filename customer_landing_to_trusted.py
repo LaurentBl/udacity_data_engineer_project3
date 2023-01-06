@@ -19,7 +19,7 @@ S3bucket_node1 = glueContext.create_dynamic_frame.from_options(
     connection_type="s3",
     format="json",
     connection_options={
-        "paths": ["s3://lbl-udacity/customer/landing/"],
+        "paths": ["s3://lbl-udacity/customers/landing/"],
         "recurse": True,
     },
     transformation_ctx="S3bucket_node1",
@@ -38,7 +38,7 @@ TrustedCustomerZone_node3 = glueContext.write_dynamic_frame.from_options(
     connection_type="s3",
     format="json",
     connection_options={
-        "path": "s3://lbl-udacity/customer/trusted/",
+        "path": "s3://lbl-udacity/customers/trusted/",
         "partitionKeys": [],
     },
     transformation_ctx="TrustedCustomerZone_node3",

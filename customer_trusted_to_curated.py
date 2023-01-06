@@ -38,30 +38,20 @@ JoinCustomerNode_node2 = Join.apply(
 # Script generated for node Drop Fields
 DropFields_node1672948935151 = DropFields.apply(
     frame=JoinCustomerNode_node2,
-    paths=[
-        "email",
-        "phone",
-        "birthday",
-        "serialnumber",
-        "registrationdate",
-        "lastupdatedate",
-        "sharewithresearchasofdate",
-        "sharewithpublicasofdate",
-        "customername",
-    ],
+    paths=["user", "timestamp", "x", "y", "z"],
     transformation_ctx="DropFields_node1672948935151",
 )
 
-# Script generated for node Accelerometer Trusted Node
-AccelerometerTrustedNode_node3 = glueContext.write_dynamic_frame.from_options(
+# Script generated for node Customers Curated Node
+CustomersCuratedNode_node3 = glueContext.write_dynamic_frame.from_options(
     frame=DropFields_node1672948935151,
     connection_type="s3",
     format="json",
     connection_options={
-        "path": "s3://lbl-udacity/accelerometer/trusted/",
+        "path": "s3://lbl-udacity/customers/curated/",
         "partitionKeys": [],
     },
-    transformation_ctx="AccelerometerTrustedNode_node3",
+    transformation_ctx="CustomersCuratedNode_node3",
 )
 
 job.commit()
